@@ -40,12 +40,12 @@ import Colors from './assets/colors';
 
 const App = () => {
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.main}>
+    <SafeAreaView style={styles.main}>
+      <ScrollView>
         <UpperView />
         <Card />
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -94,7 +94,9 @@ const Card = () => {
       Alert.alert('Please enter a valid email!');
     } else if (!passwordValid) {
       // eslint-disable-next-line quotes, prettier/prettier
-      Alert.alert(`\b\bPassword must contain: \n-At least an Uppercase Alphabet \n-At least one Numerical Value \n-At least one Special Character \n-Should be at least 8 characters long.`);
+      Alert.alert(
+        `\b\bPassword must contain: \n-At least an Uppercase Alphabet \n-At least one Numerical Value \n-At least one Special Character \n-Should be at least 8 characters long.`,
+      );
     } else if (!passwordMatch) {
       Alert.alert('Passwords do not match!');
     } else {
