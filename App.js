@@ -89,16 +89,12 @@ const Card = () => {
     ) {
       Alert.alert('Please fill all fields!');
     } else if (!isChecked) {
-      Alert.alert(`Please accpet the \n Terms & Conditions`);
+      Alert.alert('Please accpet the \n Terms & Conditions');
     } else if (!emailValid) {
       Alert.alert('Please enter a valid email!');
     } else if (!passwordValid) {
-      Alert.alert(`
-        Password must contain: \n
-        -At least an Uppercase Alphabet \n
-        -At least one Numerical Value \n
-        -At least one Special Character \n
-        -Should be at least 8 characters long.`);
+      // eslint-disable-next-line quotes, prettier/prettier
+      Alert.alert(`\b\bPassword must contain: \n-At least an Uppercase Alphabet \n-At least one Numerical Value \n-At least one Special Character \n-Should be at least 8 characters long.`);
     } else if (!passwordMatch) {
       Alert.alert('Passwords do not match!');
     } else {
@@ -195,27 +191,29 @@ const Card = () => {
             Alert.alert('Modal has been closed.');
             setModalVisible(!modalVisible);
           }}>
-          <View style={styles.dialogBox}>
-            {isNameValue &&
-              isEmailValue &&
-              isPasswordValue &&
-              isConfirmPassword &&
-              isChecked &&
-              emailValid &&
-              passwordValid &&
-              passwordMatch && (
-                <>
-                  <Text style={styles.modalHeading}>Success!{'\n'}</Text>
-                  <Text style={styles.modalText}>
-                    Welcome {isNameValue}! {'\n'}({isEmailValue})
-                  </Text>
-                </>
-              )}
-            <TouchableOpacity
-              style={styles.dialogBoxButton}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <BackIcon />
-            </TouchableOpacity>
+          <View style={styles.dialogBoxContainer}>
+            <View style={styles.dialogBox}>
+              {isNameValue &&
+                isEmailValue &&
+                isPasswordValue &&
+                isConfirmPassword &&
+                isChecked &&
+                emailValid &&
+                passwordValid &&
+                passwordMatch && (
+                  <>
+                    <Text style={styles.modalHeading}>Sign Up Successful</Text>
+                    <Text style={styles.modalText}>
+                      Welcome {isNameValue}! {'\n'}({isEmailValue})
+                    </Text>
+                  </>
+                )}
+              <TouchableOpacity
+                style={styles.dialogBoxButton}
+                onPress={() => setModalVisible(!modalVisible)}>
+                <BackIcon />
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
 
@@ -342,11 +340,14 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: '15%',
   },
-  dialogBox: {
+  dialogBoxContainer: {
     flex: 1,
+    backgroundColor: 'rgba(3,3,3,0.5)',
+  },
+  dialogBox: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(249,249,249,0.95)',
+    backgroundColor: Colors.font,
     borderRadius: 15,
     marginHorizontal: '10%',
     marginVertical: '70%',
@@ -361,7 +362,7 @@ const styles = StyleSheet.create({
   },
   dialogBoxButton: {
     borderRadius: 25,
-    margin: 10,
+    margin: 20,
     shadowColor: Colors.black,
     shadowOffset: {
       width: 2,
@@ -372,11 +373,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalHeading: {
-    fontSize: 22,
+    paddingTop: 20,
+    fontSize: 26,
     fontWeight: '600',
     letterSpacing: 1,
   },
   modalText: {
+    paddingTop: 10,
+    fontSize: 16,
     textAlign: 'center',
     letterSpacing: 1,
   },
