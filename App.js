@@ -46,6 +46,7 @@ const App = () => {
       setRefreshing(false);
     }, 800);
   }, []);
+
   return (
     <SafeAreaView style={styles.main}>
       <ScrollView
