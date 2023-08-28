@@ -11,10 +11,12 @@ import {
   Modal,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  useColorScheme,
   View,
   Alert,
 } from 'react-native';
