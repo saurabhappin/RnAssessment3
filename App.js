@@ -6,7 +6,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Modal,
   SafeAreaView,
@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
   View,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import {
   CarFront,
@@ -37,9 +38,20 @@ import {
 import Colors from './assets/colors';
 
 const App = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onPull = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 800);
+  }, []);
   return (
     <SafeAreaView style={styles.main}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onPull} />
+        }>
         <UpperView />
         <Card />
       </ScrollView>
@@ -91,9 +103,8 @@ const Card = () => {
     } else if (!emailValid) {
       Alert.alert('Please enter a valid email!');
     } else if (!passwordValid) {
-      // eslint-disable-next-line quotes, prettier/prettier
       Alert.alert(
-        `\b\bPassword must contain: \n-At least an Uppercase Alphabet \n-At least one Numerical Value \n-At least one Special Character \n-Should be at least 8 characters long.`,
+        '\b\bPassword must contain: \n-At least an Uppercase Alphabet \n-At least one Numerical Value \n-At least one Special Character \n-Should be at least 8 characters long.',
       );
     } else if (!passwordMatch) {
       Alert.alert('Passwords do not match!');
