@@ -164,7 +164,7 @@ const Card = () => {
             onChangeText={value => {
               setPasswordMatch(false);
               setConfirmPassword(value);
-              if (value === passwordValid[0]) {
+              if (isPasswordValue && value === passwordValid[0]) {
                 setPasswordMatch(true);
               }
             }}
